@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Login - NutriSaúde{% endblock %}
+
+{% block content %}
+<div class="login-page">
+  <div class="login-card">
+    <div class="login-title">
+      <h2>Faça seu login</h2>
+      <div class="login-bar"></div>
+    </div>
+
+    <form class="login-form" method="POST" action="{{ url_for('login') }}">
+      <div class="login-field">
+        <label for="usuario">Usuário*</label>
+        <input type="text" id="usuario" name="usuario" required placeholder="Digite seu usuário">
+      </div>
+
+      <div class="login-field">
+        <label for="senha">Sua senha*</label>
+        <input type="password" id="senha" name="senha" required placeholder="Digite sua senha">
+      </div>
+
+      <div class="login-remember">
+        <input type="checkbox" id="lembrar" name="lembrar">
+        <label for="lembrar">Lembrar-me</label>
+      </div>
+
+      <button type="submit" class="btn btn-primary login-btn">Entrar</button>
+
+      <p class="login-forgot">
+        Esqueceu sua senha?
+        <a href="#" aria-disabled="true">Clique aqui!</a>
+      </p>
+    </form>
+  </div>
+</div>
+{% endblock %}

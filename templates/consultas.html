@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block title %}Consultas Agendadas - NutriSaúde{% endblock %}
+
+{% block content %}
+<div class="container">
+    <section class="consultas-section">
+        <h2>Consultas Agendadas</h2>
+        <p class="subtitle">Visualize todas as consultas agendadas no sistema</p>
+
+        <!-- Tabela HTML (requisito obrigatório) -->
+        {% if agendamentos %}
+            <div class="table-responsive">
+                <table class="tabela-consultas">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Telefone</th>
+                            <th>Email</th>
+                            <th>Data</th>
+                            <th>Horário</th>
+                            <th>Tipo de Consulta</th>
+                            <th>Status</th>
+                            <th>Ação</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for agendamento in agendamentos %}
+                        <tr>
+                            <td data-label="Nome">{{ agendamento.nome }}</td>
+                            <td data-label="Telefone">{{ agendamento.telefone }}</td>
+                            <td data-label="Email">{{ agendamento.email }}</td>
+                            <td data-label="Data">{{ agendamento.data }}</td>
+                            <td data-label="Horário">{{ agendamento.horario }}</td>
+                            <td data-label="Tipo">{{ agendamento.tipo_consulta }}</td>
+
+                            <td data-label="Status">
+                                {{ agendamento.status if agendamento.status else 'Pendente' }}
+                            </td>
+
+                            <td data-label="Ação">
+                                {% if agendamento.id %}
+                                    <form method="POST" action="{{ url_for('atualizar_status', consulta_id=agendamento.id) }}">
+                                        <select name="status" required>
+                                            {% for s in status_validos %}
+                                                <option value="{{ s }}"
+                                                    {% if (agendamento.status if agendamento.status else 'Pendente') == s %}selected{% endif %}>
+                                                    {{ s }}
+                                                </option>
+                                            {% endfor %}
+                                        </select>
+                                        <button type="submit" class="btn btn-primary">Salvar</button>
+                                    </form>
+                                {% else %}
+                                    <small>Registro antigo (sem ID)</small>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="total-consultas">
+                <p><strong>Total de consultas agendadas:</strong> {{ agendamentos|length }}</p>
+            </div>
+        {% else %}
+            <div class="mensagem-vazia">
+                <p>Nenhuma consulta agendada no momento.</p>
+                <a href="{{ url_for('agendamento') }}" class="btn btn-primary">Agendar Primeira Consulta</a>
+            </div>
+        {% endif %}
+    </section>
+</div>
+{% endblock %}

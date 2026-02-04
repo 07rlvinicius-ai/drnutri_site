@@ -1,0 +1,4 @@
+id,nome,telefone,email,data,horario,tipo_consulta,status
+9f0f8e3a-4b45-4a12-9e2b-4ef3c7c1a111,Maria Silva,(11) 98765-4321,maria@email.com,2024-12-15,09:00,Emagrecimento,Concluída
+c2a0b5a6-8d22-4b1f-8f21-1b3c9b9a2222,LUCAS DE MOURA LOPES,83987911136,lucasnprimos@gmail.com,2025-12-09,10:00,Nutrição Esportiva,Cancelada
+9c0c4588-d17f-4009-ab6f-0c2e4407a576,teste,00220022211455555555,luscamou@gmail.com,2026-02-25,15:00,Reeducação Alimentar,Pendente

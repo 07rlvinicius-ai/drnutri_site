@@ -1,0 +1,858 @@
+/* ========================================
+   Estilos Globais
+   ======================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #2d9a6e;
+    --secondary-color: #1e7a5a;
+    --accent-color: #4db88f;
+    --dark-color: #1a3a2e;
+    --light-color: #f4f9f7;
+    --white: #ffffff;
+    --gray: #6c757d;
+    --light-gray: #e9ecef;
+    --error-color: #dc3545;
+    --success-color: #28a745;
+    
+    /* Fontes */
+    --font-primary: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    
+    /* Espaçamentos */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 3rem;
+}
+
+body {
+    font-family: var(--font-primary);
+    line-height: 1.6;
+    color: var(--dark-color);
+    background-color: var(--light-color);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+}
+
+/* ========================================
+   Cabeçalho e Navegação
+   ======================================== */
+
+header {
+    background-color: var(--white);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar {
+    padding: var(--spacing-sm) 0;
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.logo img {
+    height: 50px;
+    width: auto;
+}
+
+.logo h1 {
+    color: var(--primary-color);
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: var(--spacing-lg);
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--dark-color);
+    font-weight: 500;
+    transition: color 0.3s ease;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: 5px;
+}
+
+.nav-links a:hover {
+    color: var(--primary-color);
+    background-color: var(--light-color);
+}
+
+/* ========================================
+   Main Content
+   ======================================== */
+
+main {
+    min-height: calc(100vh - 200px);
+    padding: var(--spacing-xl) 0;
+}
+
+.hero.hero-home{
+  background-image:
+    linear-gradient(135deg, rgba(45,154,110,0.88), rgba(77,184,143,0.75)),
+    url("../images/concept-healthy-food-sports-lifestyle-vegetarian-lunch-healthy-breakfast-proper-nutrition-top-view-flat-lay.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* ========================================
+   Mensagens Flash (Sessões HTTP)
+   ======================================== */
+
+.alert {
+    padding: var(--spacing-md);
+    margin: var(--spacing-md) 0;
+    border-radius: 8px;
+    position: relative;
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border-left: 4px solid var(--success-color);
+}
+
+.alert-error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border-left: 4px solid var(--error-color);
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: inherit;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}
+
+.close-btn:hover {
+    opacity: 1;
+}
+
+/* ========================================
+   Seções
+   ======================================== */
+
+section {
+    margin-bottom: var(--spacing-xl);
+}
+
+h2 {
+    color: var(--primary-color);
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-md);
+    text-align: center;
+}
+
+h3 {
+    color: var(--secondary-color);
+    font-size: 2rem;
+    margin-bottom: var(--spacing-md);
+}
+
+h4 {
+    color: var(--dark-color);
+    font-size: 1.3rem;
+    margin-bottom: var(--spacing-xs);
+}
+
+.subtitle {
+    text-align: center;
+    color: var(--gray);
+    font-size: 1.1rem;
+    margin-bottom: var(--spacing-lg);
+}
+
+/* ========================================
+   Hero Section
+   ======================================== */
+
+.hero {
+    text-align: center;
+    padding: var(--spacing-xl) 0;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    color: var(--white);
+    border-radius: 15px;
+    margin-bottom: var(--spacing-xl);
+}
+
+.hero h2 {
+    color: var(--white);
+    font-size: 3rem;
+}
+
+.hero .subtitle {
+    color: var(--light-color);
+    font-size: 1.3rem;
+}
+
+/* ========================================
+   Botões
+   ======================================== */
+
+.btn {
+    display: inline-block;
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+    font-size: 1rem;
+    margin: var(--spacing-xs);
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+.btn-primary:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(45, 154, 110, 0.3);
+}
+
+.btn-secondary {
+    background-color: var(--light-gray);
+    color: var(--dark-color);
+}
+
+.btn-secondary:hover {
+    background-color: var(--gray);
+    color: var(--white);
+    transform: translateY(-2px);
+}
+
+/* ========================================
+   Lista de Serviços
+   ======================================== */
+
+.lista-servicos {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-lg);
+}
+
+.lista-servicos li {
+    background-color: var(--white);
+    padding: var(--spacing-lg);
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.lista-servicos li:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+}
+
+.lista-servicos h4 {
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-sm);
+}
+
+.lista-servicos p {
+    color: var(--gray);
+}
+
+/* ========================================
+   Seção CTA
+   ======================================== */
+
+.cta {
+    text-align: center;
+    background-color: var(--white);
+    padding: var(--spacing-xl);
+    border-radius: 10px;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* ========================================
+   Formulário
+   ======================================== */
+
+.agendamento-section {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.form-agendamento {
+    background-color: var(--white);
+    padding: var(--spacing-xl);
+    border-radius: 10px;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: var(--spacing-md);
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: var(--spacing-xs);
+    color: var(--dark-color);
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: var(--spacing-sm);
+    border: 2px solid var(--light-gray);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.form-note {
+    text-align: center;
+    color: var(--gray);
+    font-size: 0.9rem;
+    margin-top: var(--spacing-md);
+}
+
+/* ========================================
+   Tabela
+   ======================================== */
+
+.consultas-section {
+    background-color: var(--white);
+    padding: var(--spacing-xl);
+    border-radius: 10px;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+}
+
+.table-responsive {
+    overflow-x: auto;
+    margin-top: var(--spacing-lg);
+}
+
+.tabela-consultas {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--white);
+}
+
+.tabela-consultas thead {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+.tabela-consultas th,
+.tabela-consultas td {
+    padding: var(--spacing-md);
+    text-align: left;
+    border-bottom: 1px solid var(--light-gray);
+}
+
+
+.tabela-consultas th,
+.tabela-consultas td {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+.tabela-consultas th {
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+/* Zebra striping para tabela */
+.tabela-consultas tbody tr:nth-child(even) {
+    background-color: var(--light-color);
+}
+
+.tabela-consultas td form {
+    display: flex;
+    gap: var(--spacing-sm);
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: nowrap;
+    margin: 0; /* evita espaçamento extra */
+}
+
+.tabela-consultas td select {
+    width: 160px;
+    min-width: 140px;
+    height: 38px;
+    padding: 6px 34px 6px 12px;
+    border: 2px solid var(--light-gray);
+    border-radius: 8px;
+    background-color: var(--white);
+    font-size: 0.95rem;
+    cursor: pointer;
+
+    /* remove aparência padrão */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    /* seta do dropdown */
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24'%3E%3Cpath fill='%236c757d' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+}
+
+.tabela-consultas td select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(45, 154, 110, 0.18);
+}
+
+/* Botão na tabela: sem ocupar 100% e com altura igual ao select */
+.tabela-consultas td .btn {
+    height: 38px;
+    padding: 0 var(--spacing-md);
+    margin: 0; /* tira margem padrão do .btn dentro da tabela */
+    white-space: nowrap;
+}
+
+.tabela-consultas tbody tr:hover {
+    background-color: #e8f5f1;
+    transition: background-color 0.3s ease;
+}
+
+.total-consultas {
+    margin-top: var(--spacing-lg);
+    padding: var(--spacing-md);
+    background-color: var(--light-color);
+    border-radius: 8px;
+    text-align: center;
+}
+
+.mensagem-vazia {
+    text-align: center;
+    padding: var(--spacing-xl);
+    color: var(--gray);
+}
+
+/* ========================================
+   Rodapé
+   ======================================== */
+
+footer {
+    background-color: var(--dark-color);
+    color: var(--white);
+    text-align: center;
+    padding: var(--spacing-lg) 0;
+    margin-top: var(--spacing-xl);
+}
+
+footer p {
+    margin: var(--spacing-xs) 0;
+}
+
+/* ========================================
+   Media Queries - Responsividade
+   ======================================== */
+
+/* Tablet */
+/*@media (max-width: 768px) {
+    .navbar .container {
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+    
+    .nav-links {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+        text-align: center;
+    }
+    
+    .hero h2 {
+        font-size: 2rem;
+    }
+    
+    h2 {
+        font-size: 2rem;
+    }
+    
+    h3 {
+        font-size: 1.5rem;
+    }
+    
+    .lista-servicos {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Tabela responsiva em dispositivos móveis */
+    /*.tabela-consultas thead {
+        display: none;
+    }
+    
+    .tabela-consultas,
+    .tabela-consultas tbody,
+    .tabela-consultas tr,
+    .tabela-consultas td {
+        display: block;
+        width: 100%;
+    }
+    
+    .tabela-consultas tr {
+        margin-bottom: var(--spacing-md);
+        border: 1px solid var(--light-gray);
+        border-radius: 8px;
+        padding: var(--spacing-sm);
+    }
+    
+    .tabela-consultas td {
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+        border: none;
+    }
+    
+    .tabela-consultas td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: var(--spacing-sm);
+        font-weight: 600;
+        color: var(--primary-color);
+    }
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+    .navbar .container {
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+        text-align: center;
+    }
+
+    .hero h2 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    h3 {
+        font-size: 1.5rem;
+    }
+
+    .lista-servicos {
+        grid-template-columns: 1fr;
+    }
+
+    /* ✅ Tabela responsiva: mantém tabela e usa scroll horizontal */
+    .table-responsive {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .tabela-consultas {
+        min-width: 900px; /* força rolagem ao invés de quebrar */
+    }
+
+    /* No mobile/tablet, o form da ação pode quebrar para baixo se faltar espaço */
+    .tabela-consultas td form {
+        justify-content: flex-start;
+    }
+}
+
+
+/* Mobile */
+@media (max-width: 480px) {
+    .container {
+        padding: 0 var(--spacing-sm);
+    }
+    
+    .hero {
+        padding: var(--spacing-lg) var(--spacing-sm);
+    }
+    
+    .hero h2 {
+        font-size: 1.5rem;
+    }
+    
+    .hero .subtitle {
+        font-size: 1rem;
+    }
+    
+    .form-agendamento {
+        padding: var(--spacing-md);
+    }
+    
+    .btn {
+        width: 100%;
+        margin: var(--spacing-xs) 0;
+    }
+    
+    .logo h1 {
+        font-size: 1.3rem;
+    }
+
+    .tabela-consultas td .btn {
+        width: auto;
+    }
+}
+
+/* Área Profissional do Nutricionista */
+
+.dashboard-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-lg);
+}
+
+.dashboard-cards .card {
+    background: var(--white);
+    border: 1px solid var(--light-gray);
+    border-radius: 12px;
+    padding: var(--spacing-md);
+    box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+}
+
+.dashboard-cards .card:hover {
+  transform: translateY(-2px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+.dashboard-cards .card h4 {
+    margin-bottom: var(--spacing-xs);
+}
+
+.card-number {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--dark-color);
+    line-height: 1.1;
+}
+
+.card-hint {
+    display: block;
+    color: var(--gray);
+    margin-top: 6px;
+    font-size: 0.9rem;
+}
+
+.dashboard-cards .card.card-total {
+  border-left: 6px solid var(--light-gray);
+}
+
+
+/* Destaques por status (sem exagero) */
+.dashboard-cards .card.card-pendente { border-left: 6px solid #f0ad4e; }
+.dashboard-cards .card.card-confirmada { border-left: 6px solid #28a745; }
+.dashboard-cards .card.card-cancelada { border-left: 6px solid #dc3545; }
+.dashboard-cards .card.card-concluida { border-left: 6px solid #0d6efd; }
+
+.dashboard-actions {
+    margin-top: var(--spacing-lg);
+    display: flex;
+    gap: var(--spacing-sm);
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* ==============================
+   Login (nutricionista)
+   ============================== */
+
+.login-page{
+    min-height: calc(100vh - 200px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-xl) var(--spacing-md);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Fundo com “formas” usando só CSS (sem imagem) */
+.login-page::before{
+    content:"";
+    position:absolute;
+    inset:-120px;
+    background:
+        radial-gradient(700px 700px at 85% 65%, rgba(45,154,110,0.22), transparent 55%),
+        radial-gradient(520px 520px at 20% 30%, rgba(77,184,143,0.18), transparent 60%),
+        linear-gradient(135deg, rgba(45,154,110,0.08), rgba(30,122,90,0.04));
+    transform: rotate(-6deg);
+    z-index: 0;
+}
+
+.login-card{
+    width: min(520px, 100%);
+    background: var(--white);
+    border-radius: 18px;
+    padding: 46px 44px;
+    box-shadow: 0 18px 40px rgba(0,0,0,0.10);
+    border: 1px solid rgba(0,0,0,0.05);
+    position: relative;
+    z-index: 1;
+}
+
+.login-title{
+    display:flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 22px;
+}
+
+.login-title h2{
+    margin: 0;
+    text-align: left; /* no login fica mais “card” */
+    font-size: 2rem;
+    color: var(--dark-color);
+}
+
+.login-bar{
+    width: 210px;
+    height: 6px;
+    background: var(--primary-color);
+    border-radius: 999px;
+}
+
+.login-form{
+    display:flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.login-field{
+    display:flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.login-field label{
+    font-weight: 600;
+    color: var(--dark-color);
+}
+
+.login-field input{
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 2px solid var(--light-gray);
+    background: #f7faf9;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.login-field input:focus{
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(45,154,110,0.18);
+    background: var(--white);
+}
+
+.login-remember{
+    display:flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.login-remember label{
+    margin: 0;
+    font-weight: 500;
+    color: var(--gray);
+}
+
+.login-btn{
+    width: 180px;
+    align-self: center;
+    border-radius: 999px;
+    padding: 12px 18px;
+}
+
+/* deixa o link “mais clean” */
+.login-forgot{
+    text-align: center;
+    margin-top: 6px;
+    color: var(--gray);
+    font-size: 0.95rem;
+}
+
+.login-forgot a{
+    color: var(--primary-color);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.login-forgot a:hover{
+    text-decoration: underline;
+}
+
+/* Responsivo */
+@media (max-width: 480px){
+    .login-card{
+        padding: 34px 22px;
+        border-radius: 16px;
+    }
+
+    .login-title h2{
+        font-size: 1.6rem;
+    }
+
+    .login-bar{
+        width: 170px;
+    }
+
+    .login-btn{
+        width: 100%;
+    }
+}
+

@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Área Profissional - NutriSaúde{% endblock %}
+
+{% block content %}
+<div class="container">
+  <section class="consultas-section">
+    <h2>Área Profissional</h2>
+    <p class="subtitle">Painel do nutricionista para acompanhar e gerenciar consultas</p>
+
+    <div class="dashboard-cards">
+      <div class="card card-total">
+        <h4>Total</h4>
+        <p class="card-number">{{ total }}</p>
+        <span class="card-hint">consultas cadastradas</span>
+      </div>
+
+      <div class="card card-pendente">
+        <h4>Pendentes</h4>
+        <p class="card-number">{{ totais_por_status['Pendente'] }}</p>
+        <span class="card-hint">aguardando confirmação</span>
+      </div>
+
+      <div class="card card-confirmada">
+        <h4>Confirmadas</h4>
+        <p class="card-number">{{ totais_por_status['Confirmada'] }}</p>
+        <span class="card-hint">prontas para atendimento</span>
+      </div>
+
+      <div class="card card-cancelada">
+        <h4>Canceladas</h4>
+        <p class="card-number">{{ totais_por_status['Cancelada'] }}</p>
+        <span class="card-hint">não serão realizadas</span>
+      </div>
+
+      <div class="card card-concluida">
+        <h4>Concluídas</h4>
+        <p class="card-number">{{ totais_por_status['Concluída'] }}</p>
+        <span class="card-hint">atendimentos finalizados</span>
+      </div>
+    </div>
+
+    <div class="dashboard-actions">
+      <a class="btn btn-primary" href="{{ url_for('consultas') }}">Gerenciar Consultas (Status)</a>
+    </div>
+  </section>
+</div>
+{% endblock %}

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Nutricionista - Saúde e Bem-estar{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- Cabeçalho com navegação -->
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo Nutricionista" onerror="this.style.display='none'">
+                    <h1>Drnutri   </h1>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="{{ url_for('index') }}">Início</a></li>
+                    <li><a href="{{ url_for('agendamento') }}">Agendar Consulta</a></li>
+                    {% if session.get('nutri_logado') %}
+                        <li><a href="{{ url_for('consultas') }}">Consultas Agendadas</a></li>
+                        <li><a href="{{ url_for('area_profissional') }}">Área Profissional</a></li>
+                        <li><a href="{{ url_for('logout') }}">Sair</a></li>
+                    {% else %}
+                        <li><a href="{{ url_for('login') }}">Login</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Área de mensagens flash (sessões HTTP) -->
+    <div class="container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                        {{ message }}
+                        <span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+
+    <!-- Conteúdo principal (será substituído pelos templates filhos) -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Rodapé -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Nutrifly - Todos os direitos reservados</p>
+            <p>Projeto Acadêmico - Programação Web 1</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}Início - NutriSaúde{% endblock %}
+
+{% block content %}
+<div class="container">
+    <!-- Seção Hero -->
+    <section class="hero ">
+        <h2>Bem-vindo ao Drnutri</h2>
+        <p class="subtitle">Transforme sua saúde com orientação nutricional profissional</p>
+        <a href="{{ url_for('agendamento') }}" class="btn btn-primary">Agende sua Consulta</a>
+    </section>
+
+    <!-- Seção Sobre -->
+    <section class="sobre">
+        <h3>Sobre Nossos Serviços</h3>
+        <p>
+            Somos especializados em nutrição personalizada, oferecendo acompanhamento profissional 
+            para ajudá-lo a alcançar seus objetivos de saúde e bem-estar. Nossa abordagem é baseada 
+            em evidências científicas e adaptada às suas necessidades individuais.
+        </p>
+    </section>
+
+    <!-- Lista de Serviços -->
+    <section class="servicos">
+        <h3>Nossos Serviços</h3>
+        <ul class="lista-servicos">
+            <li>
+                <h4>Nutrição Esportiva</h4>
+                <p>Planejamento alimentar para atletas e praticantes de atividades físicas, visando melhor performance e recuperação.</p>
+            </li>
+            <li>
+                <h4>Emagrecimento</h4>
+                <p>Programa personalizado para perda de peso saudável e sustentável, com foco em mudanças de hábitos alimentares.</p>
+            </li>
+            <li>
+                <h4>Reeducação Alimentar</h4>
+                <p>Orientação para desenvolver uma relação saudável com a comida e adotar hábitos alimentares equilibrados para a vida toda.</p>
+            </li>
+        </ul>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta">
+        <h3>Pronto para começar sua jornada de saúde?</h3>
+        <p>Agende sua primeira consulta e descubra como podemos ajudá-lo!</p>
+        <a href="{{ url_for('agendamento') }}" class="btn btn-secondary">Agendar Agora</a>
+    </section>
+</div>
+{% endblock %}
