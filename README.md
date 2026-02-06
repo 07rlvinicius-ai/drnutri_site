@@ -46,6 +46,10 @@ O sistema possui dois fluxos:
 - CSV (manipulação manual via `open()`, `readlines()`, `write()`)
 
 ---
+## Diagrama de Casos de Uso (UML)
+
+
+<img width="955" height="632" alt="image" src="https://github.com/user-attachments/assets/c931f614-145b-448c-a0ab-a40904135962" />
 
 ## 📁 Estrutura do Projeto
 
