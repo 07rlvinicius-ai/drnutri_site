@@ -51,6 +51,10 @@ O sistema possui dois fluxos:
 
 <img width="955" height="632" alt="image" src="https://github.com/user-attachments/assets/c931f614-145b-448c-a0ab-a40904135962" />
 
+## Projeto Arquitetural
+
+<img width="1536" height="1024" alt="projeto arquitetural" src="https://github.com/user-attachments/assets/33ac3b00-11bb-4fbe-98fc-628edfeda4ea" />
+
 ## 📁 Estrutura do Projeto
 
 drnutri_site/
