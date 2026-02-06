@@ -14,6 +14,9 @@ from functools import wraps
 USUARIO_NUTRI = "nutri"
 SENHA_NUTRI = "1234"
 
+USUARIO_NUTRI = "vinicius"
+SENHA_NUTRI = "Vinicius02"
+
 def login_required(func):
     @wraps(func)
     def wrapper(*args, **kwargs):
@@ -30,28 +33,25 @@ CAMINHO_CSV = os.path.join(
     'agendamentos.csv'
 )
 
-# UC9: lista de status permitidos
+# lista de status permitidos
 STATUS_VALIDOS = ['Pendente', 'Confirmada', 'Cancelada', 'Concluída']
 
 
 def _garantir_pasta_data():
-    """Garante que a pasta /data exista."""
+    #Pasta/Data Existam
     pasta_data = os.path.dirname(CAMINHO_CSV)
     os.makedirs(pasta_data, exist_ok=True)
 
 
 def _safe(valor):
-    """
-    Evita que vírgulas quebrem o CSV (já que usamos split(',') na leitura).
-    """
+    
+    #Evita que vírgulas quebrem o CSV.
+    
     return str(valor).replace(',', ' ').strip()
 
 
 def _garantir_cabecalho():
-    """
-    Se o CSV não existir ou estiver vazio, escreve cabeçalho.
-    Isso ajuda na leitura e evita a antiga lógica de "pular primeira linha" quebrar dados.
-    """
+    #CSV
     _garantir_pasta_data()
 
     if not os.path.exists(CAMINHO_CSV):
@@ -66,13 +66,7 @@ def _garantir_cabecalho():
 
 
 def ler_csv():
-    """
-    Lê dados do CSV SEM usar biblioteca csv.
-    Suporta:
-    - formato antigo: nome,telefone,email,data,horario,tipo_consulta (6 campos)
-    - formato novo: id,nome,telefone,email,data,horario,tipo_consulta,status (8 campos)
-    Retorna uma lista de dicionários com os agendamentos.
-    """
+    #Le os dados CSV
     agendamentos = []
 
     if not os.path.exists(CAMINHO_CSV):
@@ -86,28 +80,28 @@ def ler_csv():
             if not linha:
                 continue
 
-            # Pula cabeçalho (se existir)
+
             lower = linha.lower()
             if lower.startswith('id,') or lower.startswith('nome,'):
                 continue
 
             dados = linha.split(',')
 
-            # Formato antigo (6)
+
             if len(dados) == 6:
                 agendamento = {
-                    'id': '',  # ainda não tinha id no arquivo antigo
+                    'id': '',
                     'nome': dados[0],
                     'telefone': dados[1],
                     'email': dados[2],
                     'data': dados[3],
                     'horario': dados[4],
                     'tipo_consulta': dados[5],
-                    'status': 'Pendente'  # padrão para compatibilidade
+                    'status': 'Pendente'
                 }
                 agendamentos.append(agendamento)
 
-            # Formato novo (8)
+
             elif len(dados) == 8:
                 status_lido = dados[7] if dados[7] in STATUS_VALIDOS else 'Pendente'
                 agendamento = {
@@ -126,10 +120,7 @@ def ler_csv():
 
 
 def escrever_csv(agendamento):
-    """
-    Escreve dados no CSV SEM usar biblioteca csv.
-    Agora grava no formato novo (8 campos).
-    """
+    #Escrever os Dados
     _garantir_cabecalho()
 
     # Garantir que todo agendamento novo tenha id e status
@@ -155,11 +146,7 @@ def escrever_csv(agendamento):
 
 
 def reescrever_csv(agendamentos):
-    """
-    Reescreve o CSV inteiro no formato novo (8 campos).
-    Isso é o mais seguro para "editar" registros em um CSV simples.
-    Também migra automaticamente dados antigos (sem id/status).
-    """
+    #Reescrever o CSV com os Dados
     _garantir_pasta_data()
 
     with open(CAMINHO_CSV, 'w', encoding='utf-8') as arquivo:
@@ -185,11 +172,7 @@ def reescrever_csv(agendamentos):
 
 
 def validar_formulario(dados):
-    """
-    Função modular para validar dados do formulário
-    Usa estruturas condicionais IF/ELSE
-    Retorna tupla (valido, mensagem_erro)
-    """
+
     # Validar nome completo
     if not dados.get('nome') or len(dados['nome'].strip()) < 3:
         return False, "Nome completo deve ter pelo menos 3 caracteres"
@@ -230,22 +213,17 @@ def validar_formulario(dados):
 
 
 def registrar_rotas(app):
-    """
-    Função para registrar todas as rotas da aplicação
-    """
+    
+    #Função para registrar todas as rotas da aplicação
+    
 
     @app.route('/')
     def index():
-        """Rota da página inicial"""
         return render_template('index.html')
 
     @app.route('/agendamento', methods=['GET', 'POST'])
     def agendamento():
-        """
-        Rota da página de agendamento
-        GET: exibe o formulário
-        POST: processa o agendamento
-        """
+        #GET e POST
         if request.method == 'POST':
             dados = {
                 'nome': request.form.get('nome', '').strip(),
@@ -278,10 +256,7 @@ def registrar_rotas(app):
     @app.route('/consultas')
     @login_required
     def consultas():
-        """
-        Rota da página de consultas agendadas
-        Lê dados do CSV e exibe em tabela
-        """
+        #Ler dados e exibi a tabela
         try:
             agendamentos = ler_csv()
             return render_template(
@@ -300,10 +275,7 @@ def registrar_rotas(app):
     @app.route('/area-profissional')
     @login_required
     def area_profissional():
-        """
-        Área Profissional do Nutricionista
-        Exibe resumo das consultas e atalhos de gerenciamento.
-        """
+        #Na Área Profissional
         try:
             agendamentos = ler_csv()
 
@@ -361,9 +333,7 @@ def registrar_rotas(app):
     @app.route('/consultas/<consulta_id>/status', methods=['POST'])
     @login_required
     def atualizar_status(consulta_id):
-        """
-        Atualiza o status de uma consulta pelo ID.
-        """
+
         novo_status = request.form.get('status', '').strip()
 
         if novo_status not in STATUS_VALIDOS:
@@ -374,7 +344,7 @@ def registrar_rotas(app):
 
         encontrou = False
         for a in agendamentos:
-            # Se não tem id (consulta antiga), não dá pra atualizar por id
+            # Se não tem id, não dá pra atualizar
             if a.get('id') == consulta_id:
                 a['status'] = novo_status
                 encontrou = True

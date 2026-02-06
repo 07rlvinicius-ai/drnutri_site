@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Agendar Consulta - NutriSaúde{% endblock %}
+{% block title %}Agendar Consulta{% endblock %}
 
 {% block content %}
 <div class="container">
@@ -8,10 +8,10 @@
         <h2>Agende sua Consulta</h2>
         <p class="subtitle">Preencha o formulário abaixo para agendar sua consulta nutricional</p>
 
-        <!-- Formulário HTML completo (requisito obrigatório) -->
+        <!-- Formulário HTML -->
         <form method="POST" action="{{ url_for('agendamento') }}" class="form-agendamento">
             
-            <!-- Campo Nome Completo -->
+            <!-- Nome -->
             <div class="form-group">
                 <label for="nome">Nome Completo *</label>
                 <input 
@@ -24,7 +24,7 @@
                 >
             </div>
 
-            <!-- Campo Telefone -->
+            <!-- Telefone -->
             <div class="form-group">
                 <label for="telefone">Telefone *</label>
                 <input 
@@ -38,7 +38,7 @@
                 >
             </div>
 
-            <!-- Campo Email -->
+            <!-- Email -->
             <div class="form-group">
                 <label for="email">Email *</label>
                 <input 
@@ -50,7 +50,7 @@
                 >
             </div>
 
-            <!-- Campo Data -->
+            <!-- Data -->
             <div class="form-group">
                 <label for="data">Data Preferida *</label>
                 <input 
@@ -61,7 +61,7 @@
                 >
             </div>
 
-            <!-- Campo Horário -->
+            <!-- Horário -->
             <div class="form-group">
                 <label for="horario">Horário Preferido *</label>
                 <select id="horario" name="horario" required>
@@ -77,7 +77,7 @@
                 </select>
             </div>
 
-            <!-- Campo Tipo de Consulta -->
+            <!-- Tipo de Consulta -->
             <div class="form-group">
                 <label for="tipo_consulta">Tipo de Consulta *</label>
                 <select id="tipo_consulta" name="tipo_consulta" required>
@@ -88,7 +88,7 @@
                 </select>
             </div>
 
-            <!-- Botão de Envio -->
+            <!-- Envio -->
             <div class="form-group">
                 <button type="submit" class="btn btn-primary">Confirmar Agendamento</button>
                 <a href="{{ url_for('index') }}" class="btn btn-secondary">Cancelar</a>
